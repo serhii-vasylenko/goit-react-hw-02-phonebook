@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import { Form, Label, Input, Button } from './ContactForm.styled';
+
 class ContactForm extends Component {
   state = {
     name: '',
@@ -25,10 +27,10 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} autoComplete="off">
-        <label htmlFor="">
-          Name
-          <input
+      <Form onSubmit={this.handleSubmit} autoComplete="off">
+        <Label htmlFor="">
+          Name:
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -37,10 +39,10 @@ class ContactForm extends Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-        </label>
-        <label htmlFor="">
-          Phone
-          <input
+        </Label>
+        <Label htmlFor="">
+          Phone:
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -49,9 +51,9 @@ class ContactForm extends Component {
             value={this.state.number}
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </Label>
+        <Button type="submit">Add contact</Button>
+      </Form>
     );
   }
 }

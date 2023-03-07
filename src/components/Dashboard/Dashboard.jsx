@@ -5,7 +5,9 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
 
-class App extends Component {
+import { Container, MainTitle, SubTitle } from './Dashboard.styled';
+
+class Dashboard extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -44,8 +46,8 @@ class App extends Component {
     console.log(data);
 
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== data)
-    }))
+      contacts: prevState.contacts.filter(contact => contact.id !== data),
+    }));
   };
 
   render() {
@@ -56,16 +58,16 @@ class App extends Component {
     );
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Container>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onSubmit={this.formSubmit} />
 
-        <h2>Contacts</h2>
+        <SubTitle>Contacts</SubTitle>
         <Filter value={filter} onChange={this.filterChange} />
-        <ContactList contacts={filteredContacts} onClick={this.handleClick}/>
-      </div>
+        <ContactList contacts={filteredContacts} onClick={this.handleClick} />
+      </Container>
     );
   }
 }
 
-export default App;
+export default Dashboard;
