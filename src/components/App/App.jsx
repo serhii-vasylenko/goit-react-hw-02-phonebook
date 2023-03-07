@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
-import ContactList from 'components/ContactList/ContactList'
+import ContactList from 'components/ContactList/ContactList';
 
 class App extends Component {
   state = {
@@ -17,10 +17,20 @@ class App extends Component {
   };
 
   formSubmit = data => {
+    const isMatch = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    );
+
+    if (isMatch) {
+      alert(`${data.name} is already in contacts list!`);
+      return;
+    }
+
     const contact = {
       id: nanoid(),
       ...data,
     };
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
     }));
@@ -44,7 +54,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.filterChange} />
-        <ContactList contacts={filteredContacts}/>
+        <ContactList contacts={filteredContacts} />
       </div>
     );
   }
