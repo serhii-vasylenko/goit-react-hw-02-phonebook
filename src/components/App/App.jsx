@@ -40,6 +40,14 @@ class App extends Component {
     this.setState({ filter: evt.currentTarget.value });
   };
 
+  handleClick = data => {
+    console.log(data);
+
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== data)
+    }))
+  };
+
   render() {
     const { filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -54,7 +62,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.filterChange} />
-        <ContactList contacts={filteredContacts} />
+        <ContactList contacts={filteredContacts} onClick={this.handleClick}/>
       </div>
     );
   }

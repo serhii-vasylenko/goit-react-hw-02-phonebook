@@ -1,7 +1,7 @@
-const ContactList = ({ contact: { name, number } }) => {
+const ContactList = ({ contact: { name, number, id }, onClick }) => {
   return (
     <li>
-      {name}: {number}
+      {name}: {number} <button onClick={() => onClick(id)}>Delete</button>
     </li>
   );
 };
